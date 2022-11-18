@@ -17,7 +17,8 @@ export class ProductListComponent{
   categorySelectedAction$=this.categorySelectedSubject.asObservable();
 
   products$=combineLatest([
-    this.productService.productsWithCategory$,
+    //this.productService.productsWithCategory$,
+    this.productService.productsWithAdd$,
     this.categorySelectedAction$
   ])
   .pipe(
@@ -41,8 +42,9 @@ export class ProductListComponent{
 
   constructor(private productService: ProductService,
     private productCategoryService:ProductCategoryService) { }
+
   onAdd(): void {
-    console.log('Not yet implemented');
+    this.productService.addProduct();
   }
 
   onSelected(categoryId: string): void {
